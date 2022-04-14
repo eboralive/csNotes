@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:csNotes.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="csNotes.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="csNotes">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+
+    <DockPanel>
+        <ListBox Name="ListBoxFileList" Items="{Binding MyItems}" SelectedItem="{Binding SelectedListItem}" 
+        SelectedIndex="{Binding SelectedListIndex}" Background="#abcdef" DockPanel.Dock="Left" >
+            <ListBox.Styles>
+                <Style Selector="ListBoxItem">
+                    <Setter Property="Width" Value="200"/>
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                </Style>
+            </ListBox.Styles>
+        </ListBox>
+
+        <DockPanel DockPanel.Dock="Right" >
+            <DockPanel DockPanel.Dock="Top" >
+                <Button Content="{Binding ButtonText}" Command="{Binding ButtonClicked}" DockPanel.Dock="Left" />
+                <DockPanel DockPanel.Dock="Right" >
+                    <TextBlock Text="{Binding SetTextBlockText}" DockPanel.Dock="Left" />
+                    <TextBox Text="{Binding SetFileNameTextBoxText}" AcceptsReturn="True" DockPanel.Dock="Right" Watermark="file name" TextWrapping="NoWrap" />
+                </DockPanel>
+            </DockPanel>
+          
+            <TextBox Text="{Binding SetTextBoxFileText}" DockPanel.Dock="Bottom" AcceptsReturn="True" TextWrapping="Wrap" />
+        </DockPanel>
+ 
+
+    </DockPanel>
+
+</Window>
